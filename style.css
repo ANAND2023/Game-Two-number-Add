@@ -1,0 +1,203 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2&family=Heebo:wght@500&display=swap');
+
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Baloo Bhaijaan 2'
+}
+.main{
+    width:100vw;
+    height:100vh;
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+
+}
+
+.main .second{
+    margin-top: 20px;
+    width:700px;
+    height:500px;
+    /* border: 2px solid red; */
+    border:2px solid green;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.top{
+    height:50%;
+    width: 100%;
+    /* border:2px solid green; */
+
+}
+.top .heading{
+    text-align: center;
+}
+.timer{
+    margin-top: 9px;
+ display: flex;
+ justify-content:space-between;
+
+}
+.score_nav{
+    display: flex;
+/* display: ; */
+justify-self: center
+}
+.score_nav p{
+   display: inline-block
+   /* margin-top: 20px; */
+}
+
+
+.showBox{
+    /* width: 129px; */
+    height: 56px;
+    /* background-color: #002bff; */
+}
+.image{
+    position: relative;
+    top: -13px;
+    left: 39px;
+    right: 2px;
+    display: inline-block;
+    width:100px;
+    height: 40px;
+}
+.image img{
+    width: 50px;
+    height: 50px;
+}
+.bottom{
+    height: 50%;
+    /* width: 100%; */
+    /* border:2px solid rgb(0, 255, 0); */
+}
+.container{
+    display: grid;
+    grid-template-rows: repeat(3, 6.3vw);
+    grid-template-columns: repeat(3, 18.2vw);
+    font-family: 'Roboto', sans-serif;
+    /* position: relative; */
+}
+
+.box{
+    border: 2px solid #00750024;
+    font-size: 3vw;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box:hover{
+    background-color: #8395a7
+    /* background-color: rgb(216, 187, 245); */
+}
+.button{
+    margin-top: 88px;
+    display: flex;
+    justify-content: space-around;
+    /* position: relative; */
+    left: 1px;
+    bottom: -60px;
+    /* bottom: -36px; */
+}
+.btn{
+    /* padding: 10px; */
+}
+.start{
+   /* padding: 10px; */
+}
+.reset{
+
+}
+.random{
+    margin-top: 93px;
+    /* width:100px; */
+    /* padding:10px; */
+    font-size: 96px;
+    /* padding: 0; */
+    /* margin: -31px; */
+    font-weight: 800;
+    /* background-color: blue; */
+    color:green;
+}
+.showBox{display: flex;justify-content: center;align-items: center;flex-direction: column;/* margin: 0; *//* padding: 0; */}
+.inputTag{
+  margin-top: -5px;
+}
+.inputTag input{
+
+width: 85px;
+}
+.submit{
+    
+padding: 0 18px;
+}
+
+
+
+/* ..........................button................................... */
+
+.glow-on-hover {
+    width: 100px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    /* background: #111; */
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* width: 100px; */
+    background: #b9aaaa;
+    /* background: #111; */
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}

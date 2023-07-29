@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="main">
+        <div class="second">
+            <div class="top">
+                <!-- <div class="heading">
+                    <h3>Random Number Addition Game</h3>
+                </div> -->
+                <div class="timer">
+                    <div>
+                        <p id="timer">Time Left: 60s</p>
+                    </div>
+                    <div class="heading">
+                        <h3>Random Number Addition Game</h3>
+                    </div>
+                    <div class="score_nav">
+                        <div class="image"><img src="./star.gif" alt="" /></div>
+                        <p id="score">Score: 0</p>
+                    </div>
+                </div>
+                <div class="showBox">
+                    <!-- <p>Enter the correct sum</p> -->
+                    <div class="random" id="numbers"></div>
+                    <div class="inputTag">
+                        <!-- <input type="text" id="answer" disabled> -->
+                        <!-- <button class="submit " onclick="checkAnswer()" disabled>Submit</button> -->
+                    </div>
+                </div>
+                <div id="scoreboard">
+
+                </div>
+
+
+                <div class="button">
+                    <!-- <button class="start btn " onclick="startGame()">Start Game</button> -->
+                    <button class="glow-on-hover start btn" onclick="startGame()" >Start Game</button>
+                    <button class="glow-on-hover start btn" onclick="resetGame()">Reset Game</button>
+                    <!-- <button class="reset btn" onclick="resetGame()" >Reset Game</button> -->
+                </div>
+            </div>
+            <div class="bottom">
+                <div class="container"  id="answer-buttons">
+                    <!-- <div class="line"></div> -->
+                    <div class="box " onclick="checkAnswer(1)" disabled><span class="boxtext">1</span></div>
+                    <div class="box " onclick="checkAnswer(2)" disabled><span class="boxtext">2</span></div>
+                    <div class="box " onclick="checkAnswer(3)" disabled><span class="boxtext">3</span></div>
+                    <div class="box " onclick="checkAnswer(4)" disabled><span class="boxtext">4</span></div>
+                    <div class="box" onclick="checkAnswer(5)" disabled><span class="boxtext">5</span></div>
+                    <div class="box " onclick="checkAnswer(6)" disabled><span class="boxtext">6</span></div>
+                    <div class="box " onclick="checkAnswer(7)" disabled><span class="boxtext">7</span></div>
+                    <div class="box " onclick="checkAnswer(8)" disabled><span class="boxtext">8</span></div>
+                    <div class="box " onclick="checkAnswer(9)" disabled><span class="boxtext">9</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./index.js"></script>
+</body>
+
+</html>
+
+
+
+
+
+let music = new Audio("music.mp3")
+	let audioTurn = new Audio("ting.mp3")
+	let gameover = new Audio("end.mp3")
+	let yes=new Audio("yes.mp3")
+	let no=new Audio("no.mp3")
+	let start=new Audio("start.mp3")
+    
+	
+	
+	// Set up the game variables
+    var num1, num2, correctAnswer, score = 0, timeLeft = 60;
+    var numbersDiv = document.getElementById("numbers");
+    var answerInput = document.getElementById("answer");
+    var submitButton = document.querySelector("button");
+    var resetButton = document.querySelector("button:nth-of-type(2)");
+    var scoreP = document.getElementById("score");
+    var timerP = document.getElementById("timer");
+
+    // Generate two random numbers between 1 and 10
+    function generateNumbers() {
+      num1 = Math.floor(Math.random() * 4) + 1;
+      num2 = Math.floor(Math.random() * 4) + 1;
+      correctAnswer = num1 + num2;
+      numbersDiv.innerHTML = num1 + " + " + num2;
+    }
+
+    // Check the user's answer and update the score
+    function checkAnswer() {
+		audioTurn.play();
+      var userAnswer = parseInt(answerInput.value);
+      if (userAnswer === correctAnswer) {
+        score++;
+        scoreP.innerHTML = "Score: " + score;
+        answerInput.value = "";
+        generateNumbers();
+		audioTurn.play();
+		yes.play();
+		
+      } else {
+        score--;
+        scoreP.innerHTML = "Score: " + score;
+        answerInput.value = "";
+        generateNumbers();
+		// audioTurn.play();
+		no.play();
+      }
+    }
+
+    // Set up the timer and update it every second
+    function startTimer() {
+
+      var timerId = setInterval(function() {
+        timeLeft--;
+        timerP.innerHTML = "Time Left: " + timeLeft + "s";
+        if (timeLeft === 0) {
+          // gameover.play();
+          // end.play();
+          clearInterval(timerId);
+          // end.play();
+          answerInput.disabled = true;
+          submitButton.disabled = true;
+          resetButton.disabled = false;
+          gameover.play();
+          alert("Game over! Your final score is " + score + ".");
+        }
+      }, 1000);
+    }
+
+    // Start the game
+    function startGame() {
+		start.play();
+
+      generateNumbers();
+      startTimer();
+      answerInput.disabled = false;
+      submitButton.disabled = false;
+      resetButton.disabled = true;
+    }
+
+    // Reset the game
+    function resetGame() {
+      // gameover.play();
+      score = 0;
+      timeLeft = 60;
+      scoreP.innerHTML = "Score: " + score;
+      timerP.innerHTML = "Time Left: " + timeLeft + "s";
+      answerInput.value = "";
+      answerInput.disabled = true;
+      submitButton.disabled = true;
+      resetButton.disabled = false;
+      numbersDiv.innerHTML = "";
+    }
+
+      function one(){
+         let textvalue=document.querySelector("boxtext");
+         console.log(textvalue)
+      }
+
+
+
+
+
+
+<!-- 
+
+
+
+
+
+
+      <!DOCTYPE html>
+<html>
+  <head>
+    <title>Addition Game</title>
+  </head>
+  <body>
+    <h1>Addition Game</h1>
+    <p>What is the sum of <span id="num1"></span> and <span id="num2"></span>?</p>
+    <button onclick="checkAnswer(0)">0</button>
+    <button onclick="checkAnswer(1)">1</button>
+    <button onclick="checkAnswer(2)">2</button>
+    <button onclick="checkAnswer(3)">3</button>
+    <button onclick="checkAnswer(4)">4</button>
+    <button onclick="checkAnswer(5)">5</button>
+    <button onclick="checkAnswer(6)">6</button>
+    <button onclick="checkAnswer(7)">7</button>
+    <button onclick="checkAnswer(8)">8</button>
+    <button onclick="checkAnswer(9)">9</button>
+    <p id="result"></p>
+    <p>Time remaining: <span id="time"></span></p>
+    <p>Score: <span id="score">0</span></p>
+    <button onclick="startTimer()">Start</button>
+    <button onclick="resetGame()">Reset</button>
+    <script>
+      var timer;
+var timeLeft;
+var score = 0;
+
+function getRandomNumber() {
+  return Math.floor(Math.random() * 10);
+}
+
+function generateQuestion() {
+  var num1 = getRandomNumber();
+  var num2 = getRandomNumber();
+  document.getElementById("num1").innerHTML = num1;
+  document.getElementById("num2").innerHTML = num2;
+  return num1 + num2;
+}
+
+function checkAnswer(userAnswer) {
+  var correctAnswer = generateQuestion();
+  if (userAnswer == correctAnswer) {
+    document.getElementById("result").innerHTML = "Correct!";
+    score++;
+  } else {
+    document.getElementById("result").innerHTML = "Incorrect. The correct answer is " + correctAnswer + ".";
+    score--;
+  }
+  document.getElementById("score").innerHTML = score;
+}
+
+function startTimer() {
+  timeLeft = 60;
+  timer = setInterval(function() {
+    timeLeft--;
+    document.getElementById("time").innerHTML = timeLeft;
+    if (timeLeft === 0) {
+      clearInterval(timer);
+      alert("Time's up! Final score: " + score);
+    }
+  }, 1000);
+}
+
+function resetGame() {
+  clearInterval(timer);
+  document.getElementById("result").innerHTML = "";
+  document.getElementById("time").innerHTML = "";
+  document.getElementById("score").innerHTML = "0";
+  score = 0;
+  generateQuestion();
+}
+
+// generate the first question
+generateQuestion();
+
+    </script>
+  </body>
+</html> -->
